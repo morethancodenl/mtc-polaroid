@@ -12,6 +12,8 @@
 4. Use the camera item with the paper item in your inventory
 
 ## Items:
+
+**QBCore Shared Items**
 ```lua
 ['polaroid_camera'] = {
         ['name'] = 'polaroid_camera',
@@ -52,4 +54,38 @@
         ['description'] = 'Some paper'
     }
 
+```
+
+**OX Inventory Data**
+```
+    ["polaroid_camera"] = {
+        label = "Polaroid camera",
+        weight = 5000,
+        stack = false,
+        close = true,
+        description = "Did we just go back in time?",
+        client = {
+            image = "polaroid.png",
+        }
+    },
+    ["polaroid_paper"] = {
+        label = "Polaroid paper",
+        weight = 10,
+        stack = true,
+        close = false,
+        description = "Some paper",
+        client = {
+            image = "photo.png",
+        }
+    },
+    ["polaroid"] = {
+        label = "Polaroid image",
+        weight = 10,
+        stack = false,
+        close = true,
+        description = "Cool image bro",
+        client = {
+            image = "photo.png",
+        }
+    },
 ```
