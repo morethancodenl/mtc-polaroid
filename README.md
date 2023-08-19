@@ -8,7 +8,7 @@ To get started with the MTC Polaroid resource, follow these steps:
 
 1. Clone this repository and place the files into your designated resources folder.
 2. Rename the script file to ```mtc-polaroid```.
-3. Configure the webhook in the ```shared/main.lua``` file.
+3. Configure the webhook in the ```server/main.lua``` file.
 4. Set up the necessary inventory items.
 5. Use the Polaroid Camera with the ```polaroid_paper``` item in you're inventory.
 
