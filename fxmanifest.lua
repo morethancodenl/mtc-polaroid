@@ -4,6 +4,10 @@ games { 'gta5' }
 author 'More Than Code'
 description 'MTC polaroid resource'
 
+shared_scripts {
+	'shared/*.lua'
+}
+
 client_scripts {
     'client/main.lua',
     'client/camera.lua'
