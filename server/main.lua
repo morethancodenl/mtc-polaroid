@@ -1,6 +1,4 @@
 local QBCore = exports['qb-core']:GetCoreObject()
-local webhook = "YOUR WEBHOOK HERE"
-
 
 RegisterNetEvent("mtc-polaroid:server:getimage", function(url, name)
     local src = source
@@ -16,7 +14,7 @@ RegisterNetEvent("mtc-polaroid:server:getimage", function(url, name)
 end)
 
 QBCore.Functions.CreateCallback('mtc-polaroid:server:webhook', function(source, cb, args)
-    cb(webhook)
+    cb(Config.Webhook)
 end)
 
 QBCore.Functions.CreateUseableItem('polaroid_camera', function(source, item)
@@ -30,7 +28,9 @@ end)
 QBCore.Functions.CreateUseableItem('polaroid', function(source, item)
     local src = source
     local Player = QBCore.Functions.GetPlayer(src)
+    local metadata = Config.Inventory == "ox" and "metadata" or "info"
+
     if Player.Functions.GetItemByName(item.name) then
-        TriggerClientEvent("mtc-polaroid:client:showImage", src, item.info.url, item.info.name, item.info.date)
+        TriggerClientEvent("mtc-polaroid:client:showImage", src, item[metadata].url, item[metadata].name, item[metadata].date)
     end
 end)
