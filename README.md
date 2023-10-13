@@ -1,4 +1,4 @@
-![More Than Code: Vehicle Rental](https://i.imgur.com/6muGpRq.png)
+![Polaroid](https://i.imgur.com/AaC8D4n.png)
 
 # Polaroid
 A Polaroid Camera resource for QBCore or Qbox Framework, within the script we focused on usability and a clean UI.
