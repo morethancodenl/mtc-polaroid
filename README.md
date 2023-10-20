@@ -1,4 +1,4 @@
-![Polaroid](https://i.imgur.com/AaC8D4n.png)
+![Polaroid](https://i.imgur.com/DkWqDk5.png)
 
 # Polaroid
 A Polaroid Camera resource for QBCore or Qbox Framework, within the script we focused on usability and a clean UI.
@@ -89,4 +89,5 @@ You can find the images for the items mentioned below in the ```images``` direct
 }
 ```
 ## 👉 Join our community
-[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/tWMvPtq8uu)
+
+[![Discord](https://discord.com/api/guilds/1075048579758035014/widget.png?style=banner2)](https://discord.gg/cFuv5BMWzK)
