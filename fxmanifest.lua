@@ -3,9 +3,11 @@ games { 'gta5' }
 
 author 'More Than Code'
 description 'MTC polaroid resource'
+lua54 'yes'
 
 shared_scripts {
-	'shared/*.lua'
+	'shared/*.lua',
+    '@ox_lib/init.lua'
 }
 
 client_scripts {

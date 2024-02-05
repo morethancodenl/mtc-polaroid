@@ -4,17 +4,30 @@ local prop = nil
 local cammode = 0
 
 local function TextInput()
-    AddTextEntry("FMMC_KEY_TIP8", "Enter the title of the image")
-    DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP8", "", "", "", "", "", 100)
+    if Config.Input == 'ox' then
+        local input = lib.inputDialog('Title for your image', {
+            { type = 'input', label = 'Image Title', required = true} 
+        })
 
-    while UpdateOnscreenKeyboard() ~= 1 and UpdateOnscreenKeyboard() ~= 2 do
-        Citizen.Wait(0)
-    end
+        return input[1]
 
-    if UpdateOnscreenKeyboard() ~= 2 then
-        local result = GetOnscreenKeyboardResult()
-        return result
+    elseif Config.Input == 'qb' then
+        local input = exports['qb-input']:ShowInput({
+            header = "Enter the title of the image",
+            submitText = "Submit",
+            inputs = {
+                {
+                    name = "title",
+                    text = "Title",
+                    type = "text",
+                    isRequired = true,
+                }
+            }
+        })
+
+        return input.title
     else
+        print('[MTC] Invalid input type')
         return nil
     end
 end
@@ -69,7 +82,9 @@ end
 local function TakePicture()
     local webhook = GetWebhook()
     local title = TextInput()
-
+    if title == nil then
+        return
+    end
 
     if webhook == nil then
         return
