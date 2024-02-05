@@ -12,6 +12,11 @@ To get started with the MTC Polaroid resource, follow these steps:
 4. Set up the necessary inventory items.
 5. Use the Polaroid Camera with the ```polaroid_paper``` item in you're inventory.
 
+If you want to use qb-input/Don't have ox_lib installed:
+1. Head over to fxmanifest.lua
+2. Remove the following line: `'@ox_lib/init.lua'`
+3. Change shared.lua to use Input `qb`
+
 ## 📦 Items
 You can find the images for the items mentioned below in the ```images``` directory.
 
