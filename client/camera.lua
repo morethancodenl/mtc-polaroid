@@ -9,7 +9,7 @@ local function TextInput()
             { type = 'input', label = 'Image Title', required = true} 
         })
 
-        return input[1]
+        return input
 
     elseif Config.Input == 'qb' then
         local input = exports['qb-input']:ShowInput({
@@ -80,20 +80,34 @@ local function StopAnim()
 end
 
 local function TakePicture()
-    local webhook = GetWebhook()
+    local token = GetWebhook() -- Fetches your server convar token securely
     local title = TextInput()
-    if title == nil then
+    if title == nil then return end
+
+    if token == nil then
+        QBCore.Functions.Notify("Error: Missing cloud hosting token on server.", "error")
         return
     end
 
-    if webhook == nil then
-        return
-    end
-
-    exports['screenshot-basic']:requestScreenshotUpload(webhook, 'files[]', function(data)
-        local image = json.decode(data)
-        local url = image.attachments[1].proxy_url
-        TriggerServerEvent("mtc-polaroid:server:getimage", url, title)
+    -- FIXED PAYLOAD: Targets production endpoints and formats parameters cleanly to prevent quiet crashes
+    exports['screenshot-basic']:requestScreenshotUpload('https://api.fivemanage.com/api/v2/image', 'image', {
+        headers = {
+            ['Authorization'] = token
+        }
+    }, function(data)
+        local response = json.decode(data)
+        
+        -- Extracts the clean link from Fivemanage's standard layout array wrapper
+        if response and response.status == "ok" and response.data and response.data.url then
+            TriggerServerEvent("mtc-polaroid:server:getimage", response.data.url, title)
+        else
+            if response and response.url then
+                TriggerServerEvent("mtc-polaroid:server:getimage", response.url, title)
+            else
+                QBCore.Functions.Notify("Cloud image upload failed.", "error")
+                print("[MTC-Polaroid] Fivemanage upload failed. Server payload response: " .. tostring(data))
+            end
+        end
     end)
 end
 
